@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TaskListComponent } from './task-list.component';
 
@@ -8,7 +9,12 @@ describe('TaskListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskListComponent ]
+      declarations: [
+        TaskListComponent
+      ],
+      imports: [
+        FormsModule
+      ]
     })
     .compileComponents();
   }));
