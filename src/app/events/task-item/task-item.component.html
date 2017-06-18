@@ -1,0 +1,7 @@
+<div>
+  {{ task.description }}
+  <a href="#!" class="secondary-content">
+      <input type="checkbox" [id]="task.id" [(ngModel)]="task.checked"/>
+      <label [for]="task.id"></label>
+  </a>
+</div>

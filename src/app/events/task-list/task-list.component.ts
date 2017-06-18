@@ -9,6 +9,7 @@ export class TaskListComponent implements OnInit {
 
   tasks: Task[];
   eventName = 'Event name';
+  addMode = false;
 
   constructor() { }
 

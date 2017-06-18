@@ -1,7 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+
 import { NavBarComponent } from 'app/nav-bar/nav-bar.component';
+import { PageComponent } from 'app/page/page.component';
+
 import { EventsModule } from 'app/events/events.module';
 
 describe('AppComponent', () => {
@@ -9,7 +12,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        NavBarComponent
+        NavBarComponent,
+        PageComponent
       ],
       imports: [
         EventsModule

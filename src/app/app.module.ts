@@ -8,12 +8,14 @@ import { EventsModule } from 'app/events/events.module';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { PageComponent } from './page/page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    PageComponent
   ],
   imports: [
     BrowserModule,
