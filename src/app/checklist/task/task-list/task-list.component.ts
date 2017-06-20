@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from 'app/checklist/task/task';
 
 @Component({
   selector: 'app-task-list',
@@ -26,21 +27,6 @@ export class TaskListComponent implements OnInit {
       new Task('Task 1'),
       new Task('Task 2'),
     ]
-  }
-
-}
-
-export class Task {
-  id: number;
-  description: string;
-  checked: boolean;
-  eventId: number;
-
-  constructor(description: string) {
-    this.id = Math.round(Math.random() * 100);
-    this.description = description;
-    this.checked = Boolean(Math.round(Math.random()));
-    this.eventId = 1;
   }
 
 }

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MaterializeModule } from 'angular2-materialize';
 
-import { EventsModule } from 'app/events/events.module';
+import { ChecklistModule } from 'app/checklist/checklist.module';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -20,7 +20,7 @@ import { PageComponent } from './page/page.component';
   imports: [
     BrowserModule,
     MaterializeModule,
-    EventsModule
+    ChecklistModule
   ],
   providers: [],
   bootstrap: [AppComponent]

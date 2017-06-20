@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from 'app/nav-bar/nav-bar.component';
 import { PageComponent } from 'app/page/page.component';
 
-import { EventsModule } from 'app/events/events.module';
+import { ChecklistModule } from 'app/checklist/checklist.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -16,7 +16,7 @@ describe('AppComponent', () => {
         PageComponent
       ],
       imports: [
-        EventsModule
+        ChecklistModule
       ]
     }).compileComponents();
   }));
