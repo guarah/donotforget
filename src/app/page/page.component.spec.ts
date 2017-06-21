@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageComponent } from './page.component';
-import { EventsModule } from 'app/events/events.module';
+import { ChecklistModule } from 'app/checklist/checklist.module';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -13,7 +13,7 @@ describe('PageComponent', () => {
         PageComponent
       ],
       imports: [
-        EventsModule
+        ChecklistModule
       ]
     })
     .compileComponents();

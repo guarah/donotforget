@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { EventsPageComponent } from './events-page.component';
+import { ChecklistPageComponent } from './checklist-page.component';
 
-import { EventsPanelComponent } from 'app/events/events-panel/events-panel.component';
-import { TaskListComponent } from 'app/events/task-list/task-list.component';
-import { TaskItemComponent } from 'app/events/task-item/task-item.component';
-import { TaskEditComponent } from 'app/events/task-edit/task-edit.component';
+import { ChecklistPanelComponent } from 'app/checklist/checklist-panel/checklist-panel.component';
+import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
+import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
+import { TaskEditComponent } from 'app/checklist/task/task-edit/task-edit.component';
 
 describe('EventsPageComponent', () => {
-  let component: EventsPageComponent;
-  let fixture: ComponentFixture<EventsPageComponent>;
+  let component: ChecklistPageComponent;
+  let fixture: ComponentFixture<ChecklistPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        EventsPageComponent,
-        EventsPanelComponent,
+        ChecklistPageComponent,
+        ChecklistPanelComponent,
         TaskListComponent,
         TaskItemComponent,
         TaskEditComponent
@@ -29,7 +29,7 @@ describe('EventsPageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventsPageComponent);
+    fixture = TestBed.createComponent(ChecklistPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

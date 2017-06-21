@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventsPanelComponent } from './events-panel.component';
+import { ChecklistPanelComponent } from './checklist-panel.component';
 
 describe('EventsPanelComponent', () => {
-  let component: EventsPanelComponent;
-  let fixture: ComponentFixture<EventsPanelComponent>;
+  let component: ChecklistPanelComponent;
+  let fixture: ComponentFixture<ChecklistPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventsPanelComponent ]
+      declarations: [ ChecklistPanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventsPanelComponent);
+    fixture = TestBed.createComponent(ChecklistPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
