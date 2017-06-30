@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from 'app/checklist/task/task';
+import { Task } from 'app/task/task';
 
 @Component({
   selector: 'app-task-list',
@@ -27,6 +27,16 @@ export class TaskListComponent implements OnInit {
       new Task('Task 1'),
       new Task('Task 2'),
     ]
+  }
+
+  onAddEvent(event) {
+    alert('- ' + event);
+    this.addMode = false;
+  }
+
+  onCancelEvent(event) {
+    alert('- ' + event);
+    this.addMode = false;
   }
 
 }

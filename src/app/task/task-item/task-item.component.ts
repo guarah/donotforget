@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from 'app/checklist/task/task';
+import { Task } from 'app/task/task';
+
 
 @Component({
   selector: 'app-task-item',

@@ -1,11 +1,10 @@
 <div>
   <h4>Eventos</h4>
+
   <ul>
-    <li>Evento ...</li>
-    <li>Evento ...</li>
-    <li>Evento ...</li>
-    <li>Evento ...</li>
-    <li>Evento ...</li>
-    <li>Evento ...</li>
+    <li *ngFor="let checklist of checklists">
+      <a (click)="selectChecklist(checklist)">{{ checklist.name }}</a>
+    </li>
   </ul>
+
 </div>

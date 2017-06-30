@@ -11,7 +11,7 @@
     
     <!--TASK EDIT-->
     <li *ngIf="addMode" class="collection-item">
-      <app-task-edit></app-task-edit>
+      <app-task-edit (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)"></app-task-edit>
     </li>
   </ul>
 
