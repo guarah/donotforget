@@ -1,25 +1,31 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
+import { ChecklistComponent } from 'app/checklist/checklist.component';
 import { ChecklistPanelComponent } from 'app/checklist/checklist-panel/checklist-panel.component';
-import { ChecklistPageComponent } from 'app/checklist/checklist-page/checklist-page.component';
-import { TaskModule } from 'app/task/task.module';
+import { TaskEditComponent } from 'app/checklist/task/task-edit/task-edit.component';
+import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
+import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
+
+const componentes = [
+  ChecklistComponent,
+  ChecklistPanelComponent,
+  TaskEditComponent,
+  TaskItemComponent,
+  TaskListComponent
+]
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    TaskModule
+    FormsModule
   ],
   declarations: [
-    ChecklistPanelComponent,
-    ChecklistPageComponent
+    ...componentes
   ],
   exports: [
-    ChecklistPanelComponent,
-    ChecklistPageComponent
+    ...componentes
   ]
-  // providers:    [ ...Service ]
 })
 export class ChecklistModule { }

@@ -2,7 +2,6 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
-import { PageComponent } from 'app/page/page.component';
 import { ChecklistModule } from 'app/checklist/checklist.module';
 import { SharedModule } from 'app/shared/shared.module';
 
@@ -10,8 +9,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        PageComponent
+        AppComponent
       ],
       imports: [
         ChecklistModule,

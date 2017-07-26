@@ -1,24 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
 
 import { MaterializeModule } from 'angular2-materialize';
 
+import { AppComponent } from './app.component';
 import { ChecklistModule } from 'app/checklist/checklist.module';
 import { SharedModule } from 'app/shared/shared.module';
-import { PageComponent } from 'app/page/page.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    MaterializeModule,
     ChecklistModule,
+    MaterializeModule,
     SharedModule
   ],
   providers: [],

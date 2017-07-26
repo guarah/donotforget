@@ -1,4 +1,4 @@
-import { Task } from 'app/task/task';
+import { Task } from 'app/checklist/task/task';
 
 export class Checklist {
     id: number;
