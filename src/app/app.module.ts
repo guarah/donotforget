@@ -6,10 +6,12 @@ import { MaterializeModule } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 import { ChecklistModule } from 'app/checklist/checklist.module';
 import { SharedModule } from 'app/shared/shared.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

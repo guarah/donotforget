@@ -6,12 +6,12 @@
 
     <!--TASK LIST-->
     <li *ngFor="let task of tasks" class="collection-item">
-      <app-task-item [task]='task' ></app-task-item>
+      <df-task-item [task]='task' ></df-task-item>
     </li>
     
     <!--TASK EDIT-->
     <li *ngIf="addMode" class="collection-item">
-      <app-task-edit (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)"></app-task-edit>
+      <df-task-edit (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)"></df-task-edit>
     </li>
   </ul>
 

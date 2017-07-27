@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-task-edit',
+  selector: 'df-task-edit',
   templateUrl: './task-edit.component.html',
   styleUrls: ['./task-edit.component.css']
 })

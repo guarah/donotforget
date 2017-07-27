@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Checklist } from 'app/checklist/checklist';
 
 @Component({
-  selector: 'app-checklist-panel',
+  selector: 'df-checklist-panel',
   templateUrl: './checklist-panel.component.html',
   styleUrls: ['./checklist-panel.component.css']
 })

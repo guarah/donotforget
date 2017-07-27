@@ -3,7 +3,7 @@ import { Task } from 'app/checklist/task/task';
 
 
 @Component({
-  selector: 'app-task-list',
+  selector: 'df-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-checklist',
+  selector: 'df-checklist',
   templateUrl: './checklist.component.html',
   styleUrls: ['./checklist.component.css']
 })
