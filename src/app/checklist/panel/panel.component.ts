@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Checklist } from 'app/checklist/checklist';
 
 @Component({
-  selector: 'df-checklist-panel',
-  templateUrl: './checklist-panel.component.html',
-  styleUrls: ['./checklist-panel.component.css']
+  selector: 'df-panel',
+  templateUrl: './panel.component.html',
+  styleUrls: ['./panel.component.css']
 })
-export class ChecklistPanelComponent implements OnInit {
+export class PanelComponent implements OnInit {
 
   checklists: Array<Checklist>;
 
@@ -33,3 +33,15 @@ export class ChecklistPanelComponent implements OnInit {
   }
 
 }
+
+// TODO:
+
+// PANEL: esse componente pode ser reusado pra tudo, 
+// basta ele receber um array, e uma prorpiedade de label, 
+// e uma funcao para o click deste item
+
+// o edit do task tbm vai ser atomic, tal como o item e o list
+
+// itens atomicos devem ficar em uma pasta atomica, 
+// nao pode estar dentro de uma pasta de um componente 
+// especifico

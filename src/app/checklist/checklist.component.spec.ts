@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { ChecklistComponent } from './checklist.component';
-import { ChecklistPanelComponent } from 'app/checklist/checklist-panel/checklist-panel.component';
-import { TaskEditComponent } from 'app/checklist/task/task-edit/task-edit.component';
+import { PanelComponent } from 'app/checklist/panel/panel.component';
+import { EditComponent } from 'app/checklist/task/edit/edit.component';
 import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
 import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
 
@@ -15,8 +15,8 @@ describe('ChecklistComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ChecklistComponent,
-        ChecklistPanelComponent,
-        TaskEditComponent,
+        PanelComponent,
+        EditComponent,
         TaskItemComponent,
         TaskListComponent
       ],

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'df-task-edit',
-  templateUrl: './task-edit.component.html',
-  styleUrls: ['./task-edit.component.css']
+  selector: 'df-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class TaskEditComponent implements OnInit {
+export class EditComponent implements OnInit {
 
   @Output() addEvent: EventEmitter<any> = new EventEmitter();
   @Output() cancelEvent: EventEmitter<any> = new EventEmitter();

@@ -3,15 +3,16 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ChecklistComponent } from 'app/checklist/checklist.component';
-import { ChecklistPanelComponent } from 'app/checklist/checklist-panel/checklist-panel.component';
-import { TaskEditComponent } from 'app/checklist/task/task-edit/task-edit.component';
 import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
 import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
 
+import { EditComponent } from 'app/checklist/task/edit/edit.component';
+import { PanelComponent } from 'app/checklist/panel/panel.component';
+
 const componentes = [
   ChecklistComponent,
-  ChecklistPanelComponent,
-  TaskEditComponent,
+  PanelComponent,
+  EditComponent,
   TaskItemComponent,
   TaskListComponent
 ]
