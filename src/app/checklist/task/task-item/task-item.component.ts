@@ -8,7 +8,7 @@ import { Task } from 'app/checklist/task/task';
 })
 export class TaskItemComponent implements OnInit {
 
-  @Input() task = new Task('Default');
+  @Input() task = new Task(0, 'Default', false, 0);
 
   constructor() { }
 
