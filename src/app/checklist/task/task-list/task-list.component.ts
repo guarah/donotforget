@@ -20,18 +20,11 @@ export class TaskListComponent implements OnInit {
   }
 
   loadTasks() {
-    this.tasks = [
-      new Task('Task 1'),
-      new Task('Task 2'),
-      new Task('Task 1'),
-      new Task('Task 2'),
-      new Task('Task 1'),
-      new Task('Task 2'),
-    ]
+    this.tasks = [];
   }
 
   onAddEvent(event) {
-    alert('- ' + event);
+    this.tasks.push(event);
     this.addMode = false;
   }
 

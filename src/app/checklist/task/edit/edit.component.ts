@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Task } from "app/checklist/task/task";
 
 @Component({
   selector: 'df-edit',
@@ -10,14 +12,17 @@ export class EditComponent implements OnInit {
   @Output() addEvent: EventEmitter<any> = new EventEmitter();
   @Output() cancelEvent: EventEmitter<any> = new EventEmitter();
 
+  taskModel = new Task('');
+
   constructor() { }
 
   ngOnInit() {
   }
 
   add() {
-    this.addEvent.emit('added')
+    this.addEvent.emit(this.taskModel);
   }
+
   cancel() {
     this.cancelEvent.emit('canceled');
   }

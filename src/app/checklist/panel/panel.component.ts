@@ -9,7 +9,9 @@ import { Checklist } from 'app/checklist/checklist';
 })
 export class PanelComponent implements OnInit {
 
+  addMode = false;
   checklists: Array<Checklist>;
+  checkList = new Checklist('');
 
   constructor() { }
 
@@ -18,18 +20,21 @@ export class PanelComponent implements OnInit {
   }
 
   loadChecklists() {
-    this.checklists = [
-      new Checklist('CheckList 1'),
-      new Checklist('CheckList 2'),
-      new Checklist('CheckList 3'),
-      new Checklist('CheckList 4'),
-      new Checklist('CheckList 5'),
-      new Checklist('CheckList 6')
-    ]
+    this.checklists = [];
   }
 
   selectChecklist(checklist: Checklist) {
     alert(checklist.name);
+  }
+
+  onAddEvent(event) {
+    this.checklists.push(event);
+    this.addMode = false;
+  }
+
+  onCancelEvent(event) {
+    alert('- ' + event);
+    this.addMode = false;
   }
 
 }
