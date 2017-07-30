@@ -6,11 +6,11 @@
       <a (click)="selectChecklist(checklist)">{{ checklist.name }}</a>
     </li>
   </ul>
-  
-  
-  <df-edit *ngIf="addMode" (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)" [(ngModel)]="checkList"></df-edit>
+
+
+  <df-form-edit *ngIf="addMode" (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)" [(ngModel)]="checkList"></df-form-edit>
 
   <a (click)="addMode = true;" class="blue-text darken-1" href="#" style="display: block; font-size: 20px;"><i class="blue-text darken-1 material-icons left" style="font-size: 30px;">add</i>Novo Item</a>
-    
+
 
 </div>

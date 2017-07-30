@@ -1,0 +1,19 @@
+
+  <form (ngSubmit)="onSubmit()"#form="ngForm">
+    <div class="form-group input-field col s12">
+
+      <div *ngFor="let field of formEdit.fields">
+
+        <label for="name">{{field.label}}</label>
+        <input type="text" class="form-control" id="field"
+              required [(ngModel)]="model[field.field]"
+              name="field" autocomplete="off">
+
+      </div>
+
+    </div>
+    <button type="submit" class="btn waves-effect waves-light blue darken-1">{{formEdit.saveLabel}}</button>
+    <a (click)="onCancel()" class="btn-flat">{{formEdit.cancelLabel}}</a>
+  </form>
+
+
