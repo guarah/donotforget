@@ -23,8 +23,12 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit() {
     this.loadTasks();
+
+    // criar o service checklist, colocar os subscribers la para mocks
+    // ai, esta parte fica ok só dependendo daquela para a comu comunicacao o server
   }
 
+  // será chamado pelo subscribe de uma req que está no servico
   loadTasks() {
     this.tasks = [];
   }
@@ -36,12 +40,15 @@ export class TaskListComponent implements OnInit {
 
   onAddEvent(event) {
     console.log(event);
+    // aqui tera uma funcao pro service, passando a task para ser salva por uma req pro node
+    // entao ouvir o on add e dar um feedback, ou usar promessas ou streams
+
+    // pesquisar se os nomes devem ser panel ou checklist-panel
     this.tasks.push(event);
     this.addMode = false;
   }
 
   onCancelEvent(event) {
-    alert('- ' + event);
     this.addMode = false;
   }
 

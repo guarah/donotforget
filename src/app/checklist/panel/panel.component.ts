@@ -41,12 +41,15 @@ export class PanelComponent implements OnInit {
 
 // TODO:
 
-// PANEL: esse componente pode ser reusado pra tudo, 
-// basta ele receber um array, e uma prorpiedade de label, 
+// PANEL: esse componente pode ser reusado pra tudo,
+// basta ele receber um array, e uma prorpiedade de label,
 // e uma funcao para o click deste item
 
 // o edit do task tbm vai ser atomic, tal como o item e o list
 
-// itens atomicos devem ficar em uma pasta atomica, 
-// nao pode estar dentro de uma pasta de um componente 
+// itens atomicos devem ficar em uma pasta atomica,
+// nao pode estar dentro de uma pasta de um componente
 // especifico
+
+// tasklist e o panel seráo quase os mesmo caras, pucas alteracoes, isso vai ficar mais claro quando
+// alterar o design para uma list abrr por cima da outra/
