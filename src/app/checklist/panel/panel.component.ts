@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Checklist } from 'app/checklist/checklist';
+import { FormEdit } from "app/lib/components/form-edit/formEdit";
 
 @Component({
   selector: 'df-panel',
@@ -9,9 +10,13 @@ import { Checklist } from 'app/checklist/checklist';
 })
 export class PanelComponent implements OnInit {
 
+  fields = [{label: 'Checklist name...', field: 'name', type: 'text'}];
+  formEdit = new FormEdit(this.fields, 'Salvar', 'Cancelar');
+
   addMode = false;
+
   checklists: Array<Checklist>;
-  checkList = new Checklist('');
+  checklistModel;
 
   constructor() { }
 
@@ -24,16 +29,24 @@ export class PanelComponent implements OnInit {
   }
 
   selectChecklist(checklist: Checklist) {
-    alert(checklist.name);
+    // chamar uma funcao do service, que avida item selecionado
+  }
+
+  addChecklist() {
+    this.addMode = true;
+    this.checklistModel = new Checklist('');
   }
 
   onAddEvent(event) {
+    // aqui tera uma funcao pro service, passando a task para ser salva por uma req pro node
+    // entao ouvir o on add e dar um feedback, ou usar promessas ou streams
+
+    // pesquisar se os nomes devem ser panel ou checklist-panel
     this.checklists.push(event);
     this.addMode = false;
   }
 
   onCancelEvent(event) {
-    alert('- ' + event);
     this.addMode = false;
   }
 
