@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Checklist } from 'app/checklist/checklist';
-import { FormEdit } from "app/lib/components/form-edit/formEdit";
+import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 
 @Component({
   selector: 'df-panel',

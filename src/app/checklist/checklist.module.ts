@@ -8,13 +8,6 @@ import { PanelComponent } from 'app/checklist/panel/panel.component';
 import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
 import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
 
-const componentes = [
-  ChecklistComponent,
-  PanelComponent,
-  TaskItemComponent,
-  TaskListComponent
-]
-
 @NgModule({
   imports: [
     CommonModule,
@@ -22,10 +15,13 @@ const componentes = [
     ComponentsModule
   ],
   declarations: [
-    ...componentes
+    ChecklistComponent,
+    PanelComponent,
+    TaskItemComponent,
+    TaskListComponent
   ],
   exports: [
-    ...componentes
+    ChecklistComponent
   ]
 })
 export class ChecklistModule { }
