@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'app/checklist/task/task';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
+import { ChecklistService } from 'app/checklist/checklist.service';
 
 
 @Component({
@@ -19,13 +20,17 @@ export class TaskListComponent implements OnInit {
   eventName = 'Event name';
   addMode = false;
 
-  constructor() { }
+  constructor(private checklistService: ChecklistService) { }
 
   ngOnInit() {
     this.loadTasks();
 
     // criar o service checklist, colocar os subscribers la para mocks
     // ai, esta parte fica ok só dependendo daquela para a comu comunicacao o server
+    this.checklistService.selectedChecklist$.subscribe((data) => {
+      console.log('from service', data);
+    });
+
   }
 
   // será chamado pelo subscribe de uma req que está no servico
