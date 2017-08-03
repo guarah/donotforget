@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Checklist } from 'app/checklist/checklist';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
+import { ChecklistService } from 'app/checklist/checklist.service';
 
 @Component({
   selector: 'df-panel',
@@ -18,7 +19,7 @@ export class PanelComponent implements OnInit {
   checklists: Array<Checklist>;
   checklistModel;
 
-  constructor() { }
+  constructor(private checklistService: ChecklistService) { }
 
   ngOnInit() {
     this.loadChecklists();
@@ -29,6 +30,7 @@ export class PanelComponent implements OnInit {
   }
 
   selectChecklist(checklist: Checklist) {
+    this.checklistService.selectChecklist(checklist);
     // chamar uma funcao do service, que avida item selecionado
   }
 
@@ -44,6 +46,7 @@ export class PanelComponent implements OnInit {
     // pesquisar se os nomes devem ser panel ou checklist-panel
     this.checklists.push(event);
     this.addMode = false;
+    this.checklistService.addCheckList(event);
   }
 
   onCancelEvent(event) {

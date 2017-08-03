@@ -6,7 +6,7 @@
 
     <!--TASK LIST-->
     <li *ngFor="let task of tasks" class="collection-item">
-      <df-task-item [task]='task' ></df-task-item>
+      <df-task-item (click)="selectTask(task)" [task]='task' ></df-task-item>
     </li>
 
     <!--TASK EDIT ng model tem q ficar aqui-->
