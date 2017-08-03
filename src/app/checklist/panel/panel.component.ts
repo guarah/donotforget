@@ -46,6 +46,7 @@ export class PanelComponent implements OnInit {
     // pesquisar se os nomes devem ser panel ou checklist-panel
     this.checklists.push(event);
     this.addMode = false;
+    this.checklistService.addCheckList(event);
   }
 
   onCancelEvent(event) {
