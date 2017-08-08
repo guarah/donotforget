@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from 'app/checklist/task/task';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ChecklistService } from 'app/checklist/checklist.service';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: Task[];
+  tasks: FirebaseListObservable<Task[]>;
   taskModel;
 
   fields = [{label: 'Task...', field: 'description', type: 'text'}];
@@ -20,7 +21,7 @@ export class TaskListComponent implements OnInit {
   eventName = 'Event name';
   addMode = false;
 
-  constructor(private checklistService: ChecklistService) { }
+  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) { }
 
   ngOnInit() {
     this.loadTasks();
@@ -51,7 +52,8 @@ export class TaskListComponent implements OnInit {
 
   // será chamado pelo subscribe de uma req que está no servico
   loadTasks() {
-    this.tasks = [];
+    this.tasks = this.db.list('/Tasks');
+    console.log('tasks', this.tasks);
   }
 
   selectTask(task: Task) {
