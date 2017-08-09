@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChecklistService } from 'app/checklist/checklist.service';
 
 @Component({
   selector: 'df-checklist',
@@ -9,7 +10,6 @@ export class ChecklistComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

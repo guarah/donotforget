@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Checklist } from 'app/checklist/checklist';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'df-panel',
@@ -16,17 +17,23 @@ export class PanelComponent implements OnInit {
 
   addMode = false;
 
-  checklists: Array<Checklist>;
+  checklists: FirebaseListObservable<Checklist[]>;
   checklistModel;
 
-  constructor(private checklistService: ChecklistService) { }
+  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) { }
 
   ngOnInit() {
+    // this.checklistService.loadChecklists();
+
+    // this.checklistService.checklists$.subscribe((data) => {
+    //   console.log('data', data);
+    //   this.checklists = data;
+    // });
     this.loadChecklists();
   }
 
-  loadChecklists() {
-    this.checklists = [];
+  private loadChecklists() {
+    this.checklists = this.db.list('/checklists');
   }
 
   selectChecklist(checklist: Checklist) {

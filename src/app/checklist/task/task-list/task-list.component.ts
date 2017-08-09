@@ -21,7 +21,7 @@ export class TaskListComponent implements OnInit {
   eventName = 'Event name';
   addMode = false;
 
-  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) { }
+  constructor(private checklistService: ChecklistService) { }
 
   ngOnInit() {
     this.loadTasks();
@@ -52,8 +52,7 @@ export class TaskListComponent implements OnInit {
 
   // será chamado pelo subscribe de uma req que está no servico
   loadTasks() {
-    this.tasks = this.db.list('/Tasks');
-    console.log('tasks', this.tasks);
+    // this.tasks = this.db.list('/Tasks');
   }
 
   selectTask(task: Task) {
@@ -65,6 +64,11 @@ export class TaskListComponent implements OnInit {
     this.addMode = true;
     this.taskModel = new Task(0, '', false, 0);
   }
+
+  // salvar checklists
+  // colocar chamadas de firebase no lugar correto
+  // fazer funcionar edi;óes de tasks, tal como setado pra done
+  // relacionamento das tasks com os checklists
 
   onAddEvent(event) {
     // aqui tera uma funcao pro service, passando a task para ser salva por uma req pro node

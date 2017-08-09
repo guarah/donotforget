@@ -2,7 +2,7 @@
   <h4>Eventos</h4>
 
   <ul>
-    <li *ngFor="let checklist of checklists">
+    <li *ngFor="let checklist of checklists | async">
       <a (click)="selectChecklist(checklist)">{{ checklist.name }}</a>
     </li>
   </ul>
