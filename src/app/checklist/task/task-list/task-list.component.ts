@@ -21,39 +21,22 @@ export class TaskListComponent implements OnInit {
   eventName = 'Event name';
   addMode = false;
 
-  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) { }
+  constructor(private checklistService: ChecklistService) { }
 
   ngOnInit() {
-    this.loadTasks();
-
-    // criar o service checklist, colocar os subscribers la para mocks
-    // ai, esta parte fica ok só dependendo daquela para a comu comunicacao o server
-    this.checklistService.selectedChecklist$.subscribe((data) => {
-      console.log('from selectedChecklist', data);
-    });
-
-    this.checklistService.selectedTask$.subscribe((data) => {
-      console.log('from selectedTask', data);
+    this.checklistService.selectedChecklist$.subscribe((checklist) => {
+      console.log('from selectedChecklist', checklist);
+      this.loadTasks(checklist.tasks);
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
       console.log('from addedChecklist', data);
     });
-
-    this.checklistService.addedTask$.subscribe((data) => {
-      console.log('from addedTask', data);
-    });
-
-    this.checklistService.checkedTask$.subscribe((data) => {
-      console.log('from checkedTask', data);
-    });
-
   }
 
   // será chamado pelo subscribe de uma req que está no servico
-  loadTasks() {
-    this.tasks = this.db.list('/Tasks');
-    console.log('tasks', this.tasks);
+  loadTasks(tasks) {
+    this.tasks = tasks;
   }
 
   selectTask(task: Task) {
@@ -65,6 +48,11 @@ export class TaskListComponent implements OnInit {
     this.addMode = true;
     this.taskModel = new Task(0, '', false, 0);
   }
+
+  // salvar checklists
+  // colocar chamadas de firebase no lugar correto
+  // fazer funcionar edi;óes de tasks, tal como setado pra done
+  // relacionamento das tasks com os checklists
 
   onAddEvent(event) {
     // aqui tera uma funcao pro service, passando a task para ser salva por uma req pro node
