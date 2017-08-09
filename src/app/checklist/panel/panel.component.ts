@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Checklist } from 'app/checklist/checklist';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'df-panel',
@@ -23,17 +23,15 @@ export class PanelComponent implements OnInit {
   constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    // this.checklistService.loadChecklists();
-
     // this.checklistService.checklists$.subscribe((data) => {
-    //   console.log('data', data);
+    //   debugger;
     //   this.checklists = data;
     // });
-    this.loadChecklists();
+    this.checklists = this.db.list('/checklists');
   }
 
   private loadChecklists() {
-    this.checklists = this.db.list('/checklists');
+    // this.checklists = this.db.list('/checklists');
   }
 
   selectChecklist(checklist: Checklist) {
@@ -51,7 +49,7 @@ export class PanelComponent implements OnInit {
     // entao ouvir o on add e dar um feedback, ou usar promessas ou streams
 
     // pesquisar se os nomes devem ser panel ou checklist-panel
-    this.checklists.push(event);
+    // this.checklists.push(event);
     this.addMode = false;
     this.checklistService.addCheckList(event);
   }

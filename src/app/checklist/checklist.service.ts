@@ -12,7 +12,7 @@ export class ChecklistService {
   private addedChecklistSource = new Subject<Checklist>();
   private addedTaskSource = new Subject<Task>();
   private checkedTaskSource = new Subject<Task>();
-  private checklistsSource = new Subject<FirebaseListObservable<Checklist[]>>();
+  private checklistsSource = new Subject<Checklist[]>();
 
   selectedChecklist$ = this.selectedChecklistSource.asObservable();
   selectedTask$ = this.selectedTaskSource.asObservable();
@@ -41,9 +41,22 @@ export class ChecklistService {
     this.checkedTaskSource.next(task);
   }
 
-  loadChecklists() {
-    // const checklists = this.db.list('/checklists');
-    // this.checklistsSource.next(checklists);
+  loadChecklists(checklists) {
+  //   const checklists = new Array<Checklist>();
+
+  //   checklistsSnap.forEach(s => {
+  //     const checklist: Checklist = s.val();
+  //     checklist.tasks = new Array<Task>();
+
+  //     s.child('tasks').forEach(t => {
+  //       checklist.tasks.push(t.val());
+  //     });
+
+  //     checklists.push(checklist);
+  //  });
+
+
+    this.checklistsSource.next(checklists);
   }
 
   constructor(private db: AngularFireDatabase) { }
