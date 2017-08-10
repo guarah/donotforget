@@ -3,6 +3,7 @@ import { Task } from 'app/checklist/task/task';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Checklist } from "app/checklist/checklist";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: FirebaseListObservable<Task[]>;
+  tasks: Task[];
   taskModel;
 
   fields = [{label: 'Task...', field: 'description', type: 'text'}];
@@ -25,8 +26,9 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit() {
     this.checklistService.selectedChecklist$.subscribe((checklist) => {
-      console.log('from selectedChecklist', checklist);
-      this.loadTasks(checklist.tasks);
+      this.tasks = (checklist as Checklist).tasks.filter(x => x !== undefined )
+      // console.log('from selectedChecklist', checklist);
+      // this.loadTasks(checklist);
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
@@ -46,7 +48,7 @@ export class TaskListComponent implements OnInit {
 
   addTask() {
     this.addMode = true;
-    this.taskModel = new Task(0, '', false, 0);
+    this.taskModel = new Task();
   }
 
   // salvar checklists
