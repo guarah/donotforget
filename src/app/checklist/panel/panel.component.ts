@@ -34,14 +34,14 @@ export class PanelComponent implements OnInit {
     // this.checklists = this.db.list('/checklists');
   }
 
-  selectChecklist(checklist: Checklist) {
+  selectChecklist(checklist: FirebaseObjectObservable<Checklist>) {
     this.checklistService.selectChecklist(checklist);
     // chamar uma funcao do service, que avida item selecionado
   }
 
   addChecklist() {
     this.addMode = true;
-    this.checklistModel = new Checklist('');
+    this.checklistModel = new Checklist();
   }
 
   onAddEvent(event) {

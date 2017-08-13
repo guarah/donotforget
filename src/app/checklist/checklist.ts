@@ -1,11 +1,13 @@
 import { Task } from 'app/checklist/task/task';
 
 export class Checklist {
+    id: number;
     name: string;
     tasks: any[];
 
-    constructor(name: string) {
-        this.name = name;
-        this.tasks = [];
+    constructor(id?: number, name?: string, tasks?: Array<Task>) {
+      this.id = id || 0;
+      this.name = name || '';
+      this.tasks = tasks || new Array<Task>();
     }
 }

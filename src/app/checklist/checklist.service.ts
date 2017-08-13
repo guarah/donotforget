@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Checklist } from 'app/checklist/checklist';
 import { Task } from 'app/checklist/task/task';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 @Injectable()
 export class ChecklistService {
 
-  private selectedChecklistSource = new Subject<Checklist>();
+  private selectedChecklistSource = new Subject<any>();
   private selectedTaskSource = new Subject<Task>();
   private addedChecklistSource = new Subject<Checklist>();
   private addedTaskSource = new Subject<Task>();
@@ -21,7 +21,7 @@ export class ChecklistService {
   checkedTask$ = this.checkedTaskSource.asObservable();
   checklists$ = this.checklistsSource.asObservable();
 
-  selectChecklist(checklist: Checklist) {
+  selectChecklist(checklist: any) {
     this.selectedChecklistSource.next(checklist);
   }
 
