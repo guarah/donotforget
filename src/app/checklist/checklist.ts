@@ -1,6 +1,7 @@
 import { Task } from 'app/checklist/task/task';
 
 export class Checklist {
+    $key: number;
     id: number;
     name: string;
     tasks: any[];

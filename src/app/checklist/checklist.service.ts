@@ -10,7 +10,7 @@ export class ChecklistService {
   private selectedChecklistSource = new Subject<any>();
   private selectedTaskSource = new Subject<Task>();
   private addedChecklistSource = new Subject<Checklist>();
-  private addedTaskSource = new Subject<Task>();
+  private addedTaskSource = new Subject<{Task: Task, Checklist: Checklist}>();
   private checkedTaskSource = new Subject<Task>();
   private checklistsSource = new Subject<Checklist[]>();
 
@@ -33,8 +33,8 @@ export class ChecklistService {
     this.addedChecklistSource.next(checklist);
   }
 
-  addTask(task: Task) {
-    this.addedTaskSource.next(task);
+  addTask(addedTask: { Task: Task, Checklist: Checklist}) {
+    this.addedTaskSource.next(addedTask);
   }
 
   checkTask(task: Task) {

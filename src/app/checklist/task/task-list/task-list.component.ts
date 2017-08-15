@@ -3,7 +3,7 @@ import { Task } from 'app/checklist/task/task';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Checklist } from "app/checklist/checklist";
+import { Checklist } from 'app/checklist/checklist';
 
 
 @Component({
@@ -19,26 +19,23 @@ export class TaskListComponent implements OnInit {
   fields = [{label: 'Task...', field: 'description', type: 'text'}];
   formEdit = new FormEdit(this.fields, 'Salvar', 'Cancelar');
 
-  eventName = 'Event name';
+  public checkList = new Checklist();
   addMode = false;
 
   constructor(private checklistService: ChecklistService) { }
 
   ngOnInit() {
     this.checklistService.selectedChecklist$.subscribe((checklist) => {
-      this.tasks = (checklist as Checklist).tasks.filter(x => x !== undefined )
-      // console.log('from selectedChecklist', checklist);
-      // this.loadTasks(checklist);
+      this.checkList = checklist;
+      this.tasks = [];
+      if (checklist.tasks) {
+        this.tasks = (checklist as Checklist).tasks.filter(x => x !== undefined);
+      }
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
       console.log('from addedChecklist', data);
     });
-  }
-
-  // será chamado pelo subscribe de uma req que está no servico
-  loadTasks(tasks) {
-    this.tasks = tasks;
   }
 
   selectTask(task: Task) {
@@ -61,9 +58,11 @@ export class TaskListComponent implements OnInit {
     // entao ouvir o on add e dar um feedback, ou usar promessas ou streams
 
     // pesquisar se os nomes devem ser panel ou checklist-panel
-    this.tasks.push(event);
+    // this.tasks.push(event);
     this.addMode = false;
-    this.checklistService.addTask(event);
+    if (this.checkList) {
+      this.checklistService.addTask({Task: event, Checklist: this.checkList});
+    }
   }
 
   onCancelEvent(event) {
