@@ -43,13 +43,14 @@ export class ChecklistComponent implements OnInit {
     // this.checklists = this.db.object('/checklists');
     // this.checklistService.loadChecklists(this.checklists);
     this.checklistService.addedTask$.subscribe((taskAdded) => {
-      this.checklists.forEach(checkistSnapshot => {
-        const checkList = checkistSnapshot.find(c => c.key === taskAdded.Checklist.$key)
-        if (checkList && checkList.key === taskAdded.Checklist.$key) {
-          checkList.child('tasks').push(taskAdded.Task);
-        }
-      });
+      const checklistObservable = this.db.object(`/checklists/${taskAdded.Checklist.$key}`);
+      if (checklistObservable) {
+        const tasks = taskAdded.Checklist.tasks || [];
+        tasks.push(taskAdded.Task);
+        checklistObservable.update({tasks: tasks});
+      }
     });
+
   }
 
 }
