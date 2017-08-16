@@ -13,7 +13,8 @@ import { Checklist } from 'app/checklist/checklist';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: Task[];
+  tasks: any[] = [];
+  tasksObservable: FirebaseListObservable<any[]>;
   taskModel;
 
   fields = [{label: 'Task...', field: 'description', type: 'text'}];
@@ -22,15 +23,21 @@ export class TaskListComponent implements OnInit {
   public checkList = new Checklist();
   addMode = false;
 
-  constructor(private checklistService: ChecklistService) { }
+  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
+    this.tasksObservable = db.list('/tasks');
+  }
 
   ngOnInit() {
     this.checklistService.selectedChecklist$.subscribe((checklist) => {
       this.checkList = checklist;
       this.tasks = [];
-      if (checklist.tasks) {
-        this.tasks = (checklist as Checklist).tasks.filter(x => x !== undefined);
-      }
+
+      const a = this.tasksObservable.$ref
+      .orderByChild('checklist')
+      .equalTo(checklist.$key)
+      .on('child_added', (snapshot) => {
+        this.tasks.push(snapshot.val());
+      });
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
@@ -48,20 +55,11 @@ export class TaskListComponent implements OnInit {
     this.taskModel = new Task();
   }
 
-  // salvar checklists
-  // colocar chamadas de firebase no lugar correto
-  // fazer funcionar edi;óes de tasks, tal como setado pra done
-  // relacionamento das tasks com os checklists
-
-  onAddEvent(event) {
-    // aqui tera uma funcao pro service, passando a task para ser salva por uma req pro node
-    // entao ouvir o on add e dar um feedback, ou usar promessas ou streams
-
-    // pesquisar se os nomes devem ser panel ou checklist-panel
-    // this.tasks.push(event);
+  onAddEvent(task: Task) {
     this.addMode = false;
     if (this.checkList) {
-      this.checklistService.addTask({Task: event, Checklist: this.checkList});
+      task.checklist = this.checkList.$key;
+      this.tasks.push(task)
     }
   }
 
