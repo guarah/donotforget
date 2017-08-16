@@ -1,8 +1,7 @@
 <div>
-  <h4>{{ checkList.name }}</h4>
 
   <ul class="collection with-header">
-    <li class="collection-header"><h4>Não esquecer de:</h4></li>
+    <li class="collection-header"><h4>{{ checkList.name || "Select a checklist..."}}</h4></li>
 
     <!--TASK LIST-->
     <li *ngFor="let task of tasksObservable | async" class="collection-item">
