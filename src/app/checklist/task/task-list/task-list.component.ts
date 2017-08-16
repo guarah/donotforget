@@ -24,20 +24,27 @@ export class TaskListComponent implements OnInit {
   addMode = false;
 
   constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
-    this.tasksObservable = db.list('/tasks');
   }
 
   ngOnInit() {
-    this.checklistService.selectedChecklist$.subscribe((checklist) => {
+     this.checklistService.selectedChecklist$.subscribe((checklist) => {
       this.checkList = checklist;
       this.tasks = [];
 
-      const a = this.tasksObservable.$ref
-      .orderByChild('checklist')
-      .equalTo(checklist.$key)
-      .on('child_added', (snapshot) => {
-        this.tasks.push(snapshot.val());
+      this.tasksObservable = this.db.list('/tasks', {
+        query: {
+          orderByChild: 'checklist',
+          equalTo: checklist.$key
+        }
       });
+
+      // const a = this.tasksObservable.$ref
+      // .orderByChild('checklist')
+      // .equalTo(checklist.$key)
+      // .on('child_added', (snapshot) => {
+      //   this.tasks.push(snapshot.val());
+      // });
+
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
@@ -59,7 +66,7 @@ export class TaskListComponent implements OnInit {
     this.addMode = false;
     if (this.checkList) {
       task.checklist = this.checkList.$key;
-      this.tasks.push(task)
+      this.tasksObservable.push(task);
     }
   }
 
