@@ -38,13 +38,6 @@ export class TaskListComponent implements OnInit {
         }
       });
 
-      // const a = this.tasksObservable.$ref
-      // .orderByChild('checklist')
-      // .equalTo(checklist.$key)
-      // .on('child_added', (snapshot) => {
-      //   this.tasks.push(snapshot.val());
-      // });
-
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
@@ -52,8 +45,9 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  selectTask(task: Task) {
-    this.checklistService.selectTask(task);
+  selectTask(task) {
+    task.checked = !task.checked;
+    this.tasksObservable.update(task.$key, task);
     this.checklistService.checkTask(task);
   }
 
@@ -66,6 +60,7 @@ export class TaskListComponent implements OnInit {
     this.addMode = false;
     if (this.checkList) {
       task.checklist = this.checkList.$key;
+      task.checked = false;
       this.tasksObservable.push(task);
     }
   }
