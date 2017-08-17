@@ -20,8 +20,9 @@ export class TaskListComponent implements OnInit {
   fields = [{label: 'Task...', field: 'description', type: 'text'}];
   formEdit = new FormEdit(this.fields, 'Salvar', 'Cancelar');
 
+  public addMode = false;
   public checkList = new Checklist();
-  addMode = false;
+  public cleanButtonVisible = false;
 
   constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
   }
@@ -30,6 +31,7 @@ export class TaskListComponent implements OnInit {
      this.checklistService.selectedChecklist$.subscribe((checklist) => {
       this.checkList = checklist;
       this.tasks = [];
+      this.cleanButtonVisible = false;
 
       this.tasksObservable = this.db.list('/tasks', {
         query: {
@@ -38,10 +40,15 @@ export class TaskListComponent implements OnInit {
         }
       });
 
+      this.tasksObservable.subscribe(data => {
+        this.tasks = data;
+        this.cleanButtonVisible = data.length > 0;
+      });
+
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
-      console.log('from addedChecklist', data);
+      this.checklistService.selectChecklist(data);
     });
   }
 
@@ -54,6 +61,12 @@ export class TaskListComponent implements OnInit {
   addTask() {
     this.addMode = true;
     this.taskModel = new Task();
+  }
+
+  resetCompleted() {
+    this.tasks.forEach(t => {
+      this.tasksObservable.update(t.$key, {checked: false});
+    });
   }
 
   onAddEvent(task: Task) {
