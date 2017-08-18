@@ -34,7 +34,9 @@ export class PanelComponent {
 
   onAddEvent(event) {
     this.addMode = false;
-    this.checklists.push(event);
+    const checklist = this.checklists.push(event);
+    event.$key = checklist.key;
+    this.checklistService.addCheckList(event);
   }
 
   onCancelEvent(event) {

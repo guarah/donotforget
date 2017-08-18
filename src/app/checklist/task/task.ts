@@ -1,5 +1,5 @@
 export class Task {
-  id: number;
+  $key: number;
   description: string;
   checked: boolean;
   checklist: number;
