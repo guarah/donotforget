@@ -41,24 +41,6 @@ export class ChecklistService {
     this.checkedTaskSource.next(task);
   }
 
-  loadChecklists(checklists) {
-  //   const checklists = new Array<Checklist>();
-
-  //   checklistsSnap.forEach(s => {
-  //     const checklist: Checklist = s.val();
-  //     checklist.tasks = new Array<Task>();
-
-  //     s.child('tasks').forEach(t => {
-  //       checklist.tasks.push(t.val());
-  //     });
-
-  //     checklists.push(checklist);
-  //  });
-
-
-    this.checklistsSource.next(checklists);
-  }
-
   constructor(private db: AngularFireDatabase) { }
 
 }
