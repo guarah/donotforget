@@ -4,6 +4,7 @@ import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Checklist } from 'app/checklist/checklist';
+import { Subject } from 'rxjs/Subject';
 
 
 @Component({
@@ -23,28 +24,34 @@ export class TaskListComponent implements OnInit {
   public addMode = false;
   public checkList = new Checklist();
   public cleanButtonVisible = false;
+  public loading = false;
+
+  private checklistKey = new Subject();
 
   constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
   }
 
   ngOnInit() {
-     this.checklistService.selectedChecklist$.subscribe((checklist) => {
+
+    this.tasksObservable = this.db.list('/tasks', {
+      query: {
+        orderByChild: 'checklist',
+        equalTo: this.checklistKey
+      }
+    });
+
+    this.tasksObservable.subscribe(data => {
+      this.loading = false;
+      this.tasks = data;
+      this.cleanButtonVisible = data.length > 0;
+    });
+
+    this.checklistService.selectedChecklist$.subscribe((checklist) => {
+      this.loading = true;
+      this.checklistKey.next(checklist.$key);
       this.checkList = checklist;
       this.tasks = [];
       this.cleanButtonVisible = false;
-
-      this.tasksObservable = this.db.list('/tasks', {
-        query: {
-          orderByChild: 'checklist',
-          equalTo: checklist.$key
-        }
-      });
-
-      this.tasksObservable.subscribe(data => {
-        this.tasks = data;
-        this.cleanButtonVisible = data.length > 0;
-      });
-
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {

@@ -3,10 +3,17 @@
   <ul class="collection with-header">
     <li class="collection-header"><h4>{{ checkList.name || "Select a checklist..."}}</h4></li>
 
-    <!--TASK LIST-->
-    <li *ngFor="let task of tasksObservable | async" class="collection-item">
-      <df-task-item (click)="selectTask(task)" [task]='task' ></df-task-item>
+    <li *ngIf="loading" class="collection-item">
+      Loading...
     </li>
+
+    <!--TASK LIST-->
+    <div [class.hidden]="loading">
+      <li *ngFor="let task of tasksObservable | async" class="collection-item">
+        <df-task-item (click)="selectTask(task)" [task]='task' ></df-task-item>
+      </li>
+    </div>
+
 
     <!--TASK EDIT-->
     <li *ngIf="addMode" class="collection-item">
