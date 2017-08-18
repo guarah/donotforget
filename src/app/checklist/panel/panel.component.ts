@@ -1,30 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Checklist } from 'app/checklist/checklist';
-import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { ChecklistService } from 'app/checklist/checklist.service';
-import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { FormEdit } from 'app/lib/components/form-edit/formEdit';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'df-panel',
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.css']
 })
-export class PanelComponent implements OnInit {
 
-  fields = [{label: 'Checklist name...', field: 'name', type: 'text'}];
-  formEdit = new FormEdit(this.fields, 'Salvar', 'Cancelar');
+export class PanelComponent {
 
-  addMode = false;
-
-  checklists: FirebaseListObservable<Checklist[]>;
-  checklistModel;
+  public addMode = false;
+  public checklists: FirebaseListObservable<Checklist[]>;
+  public checklistModel;
+  public formFields = [{label: 'Checklist name...', field: 'name', type: 'text'}];
+  public formEdit = new FormEdit(this.formFields, 'Salvar', 'Cancelar');
 
   constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
     this.checklists = db.list('/checklists');
   }
-
-  ngOnInit() {}
 
   selectChecklist(checklist: FirebaseObjectObservable<Checklist>) {
     this.checklistService.selectChecklist(checklist);
@@ -37,7 +34,6 @@ export class PanelComponent implements OnInit {
 
   onAddEvent(event) {
     this.addMode = false;
-    // this.checklistService.addCheckList(event);
     this.checklists.push(event);
   }
 

@@ -17,8 +17,8 @@ export class TaskListComponent implements OnInit {
   tasksObservable: FirebaseListObservable<any[]>;
   taskModel;
 
-  fields = [{label: 'Task...', field: 'description', type: 'text'}];
-  formEdit = new FormEdit(this.fields, 'Salvar', 'Cancelar');
+  formFields = [{label: 'Task...', field: 'description', type: 'text'}];
+  formEdit = new FormEdit(this.formFields, 'Salvar', 'Cancelar');
 
   public checkList = new Checklist();
   addMode = false;
