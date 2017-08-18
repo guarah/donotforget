@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSubmit()"#form="ngForm">
     <div class="form-group input-field col s12">
 
-      <div *ngFor="let field of formEdit.formFields">
+      <div *ngFor="let field of formEdit.fields">
 
         <label for="name">{{field.label}}</label>
         <input type="text" class="form-control" id="field"
