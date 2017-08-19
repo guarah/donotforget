@@ -3,8 +3,8 @@
   <ul class="collection with-header">
     <li class="collection-header"><h4>{{ checkList.name || "Select a checklist..."}}</h4></li>
 
-    <li *ngIf="loading" class="collection-item">
-      Loading...
+    <li *ngIf="loading" class="collection-item center-align">
+      <df-loading></df-loading>
     </li>
 
     <!--TASK LIST-->
