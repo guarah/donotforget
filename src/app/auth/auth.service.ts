@@ -25,8 +25,10 @@ export class AuthService {
   }
 
   loginWithGoogle() {
-    return this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider());
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    firebase.auth().signInWithRedirect(provider);
   }
 
   logout() {
