@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
   selector: 'df-nav-bar',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  public avatarImage = 'https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif';
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getAuthState().subscribe(user => {
+      if (user) { this.avatarImage = user.photoURL }
+    });
+  }
+
+  public logout() {
+    this.authService.logout();
   }
 
 }
