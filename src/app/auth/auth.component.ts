@@ -10,10 +10,10 @@ export class AuthComponent implements OnInit {
 
   public user = null;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.auth.getAuthState().subscribe(user => {
+    this.authService.getAuthState().subscribe(user => {
       if (user) {
         this.user = user;
         this.router.navigate(['/home']);
@@ -22,11 +22,11 @@ export class AuthComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    this.auth.loginWithGoogle();
+    this.authService.loginWithGoogle();
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
   }
 
 }
