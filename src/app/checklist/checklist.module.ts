@@ -8,12 +8,14 @@ import { ComponentsModule } from 'app/lib/components/components.module';
 import { PanelComponent } from 'app/checklist/panel/panel.component';
 import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
 import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ComponentsModule
+    ComponentsModule,
+    SharedModule
   ],
   declarations: [
     ChecklistComponent,
