@@ -4,6 +4,7 @@ import { Checklist } from 'app/checklist/checklist';
 import { ChecklistService } from 'app/checklist/checklist.service';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { AuthService } from "app/auth/auth.service";
 
 @Component({
   selector: 'df-panel',
@@ -11,7 +12,7 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
   styleUrls: ['./panel.component.css']
 })
 
-export class PanelComponent {
+export class PanelComponent implements OnInit {
 
   public addMode = false;
   public checklists: FirebaseListObservable<Checklist[]>;
@@ -19,8 +20,17 @@ export class PanelComponent {
   public formFields = [{label: 'Checklist name...', field: 'name', type: 'text'}];
   public formEdit = new FormEdit(this.formFields, 'Salvar', 'Cancelar');
 
-  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
-    this.checklists = db.list('/checklists');
+  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase, private authService: AuthService) {
+    this.authService.getAuthState().subscribe(user => {
+      if (user) {
+        this.checklists = db.list(`/checklists/${user.uid}`);
+        // this.checklists = db.list(`/checklists`);
+       }
+    });
+  }
+
+  ngOnInit(): void {
+
   }
 
   selectChecklist(checklist: FirebaseObjectObservable<Checklist>) {

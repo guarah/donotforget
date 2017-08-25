@@ -27,6 +27,9 @@ export class AuthService {
 
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
     provider.addScope('profile');
     provider.addScope('email');
     firebase.auth().signInWithRedirect(provider);
