@@ -21,12 +21,13 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  /**
+   * Login with google
+   *
+   * @memberof AuthComponent
+   */
   loginWithGoogle() {
     this.authService.loginWithGoogle();
-  }
-
-  logout() {
-    this.authService.logout();
   }
 
 }
