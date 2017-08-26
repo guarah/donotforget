@@ -25,6 +25,11 @@ export class AuthService {
     return this.authState;
   }
 
+  /**
+   * makes the baisc config and login with google provider
+   *
+   * @memberof AuthService
+   */
   loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({
@@ -35,6 +40,12 @@ export class AuthService {
     firebase.auth().signInWithRedirect(provider);
   }
 
+
+  /**
+   * Logut application and redirect to auth
+   *
+   * @memberof AuthService
+   */
   logout() {
     this.afAuth.auth.signOut();
     this.router.navigate(['/auth']);
