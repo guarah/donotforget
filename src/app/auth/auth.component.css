@@ -14,8 +14,8 @@
   margin-top: 20px;
 }
 
-.login-card i {
-  font-size: 80px;
+.login-card .loading-wrapper {
+  height: 100%;
 }
 
 .login-card div button img {

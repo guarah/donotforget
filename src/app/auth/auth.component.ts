@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 export class AuthComponent implements OnInit {
 
   public user = null;
+  public loading = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authService.getAuthState().subscribe(user => {
+      this.loading = false;
       if (user) {
         this.user = user;
         this.router.navigate(['/home']);
@@ -28,6 +30,7 @@ export class AuthComponent implements OnInit {
    * @memberof AuthComponent
    */
   loginWithGoogle() {
+    this.loading = true;
     this.authService.loginWithGoogle();
   }
 

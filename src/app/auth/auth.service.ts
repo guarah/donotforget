@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import * as firebase from 'firebase/app';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 
@@ -37,7 +37,7 @@ export class AuthService {
     });
     provider.addScope('profile');
     provider.addScope('email');
-    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithPopup(provider);
   }
 
 

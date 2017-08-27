@@ -4,13 +4,15 @@
     <h3 class="thin">Welcome</h3>
     <md-card class="login-card">
 
-      <!-- <i class="material-icons">change_history</i> -->
-      <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/37820-200.png" alt="">
+      <div class="loading-wrapper valign-wrapper" *ngIf="loading"> <df-loading class="container"></df-loading> </div>
+      <div *ngIf="!loading">
+        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/37820-200.png" alt="">
 
-      <div>
-        <p>Connect with</p>
-        <br>
-        <button md-raised-button (click)="loginWithGoogle()" class="thin"><img src="https://maxcdn.icons8.com/Share/icon/nolan/Logos//google_logo1600.png" alt=""> GOOGLE</button>
+        <div>
+          <p>Connect with</p>
+          <br>
+          <button md-raised-button (click)="loginWithGoogle()" class="thin"><img src="https://maxcdn.icons8.com/Share/icon/nolan/Logos//google_logo1600.png" alt=""> GOOGLE</button>
+        </div>
       </div>
 
     </md-card>
