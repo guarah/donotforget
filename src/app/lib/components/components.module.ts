@@ -1,24 +1,33 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormEditComponent } from 'app/lib/components/form-edit/Form-edit.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
+import { MdButtonModule } from '@angular/material';
+import { MdCardModule } from '@angular/material';
+import { NgModule } from '@angular/core';
 
 const components = [
   FormEditComponent,
   LoadingComponent
 ];
 
+const materialModules = [
+  MdButtonModule,
+  MdCardModule
+]
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ...materialModules
   ],
   declarations: [
     ...components
   ],
   exports: [
-    ...components
+    ...components,
+    ...materialModules
   ]
 })
 export class ComponentsModule { }
