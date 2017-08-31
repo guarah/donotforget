@@ -1,21 +1,24 @@
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { ChecklistComponent } from 'app/checklist/checklist.component';
+// Services
 import { ChecklistService } from 'app/checklist/checklist.service';
+// Modules
 import { ComponentsModule } from 'app/lib/components/components.module';
+// Components
+import { ChecklistComponent } from 'app/checklist/checklist.component';
 import { PanelComponent } from 'app/checklist/panel/panel.component';
 import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
 import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
-import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ComponentsModule,
-    SharedModule
+    RouterModule
   ],
   declarations: [
     ChecklistComponent,

@@ -6,11 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 // import { PageNotFoundComponent } from './not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'auth', component: AuthComponent },
-  { path: 'home', component: HomeComponent },
-
-  { path: '',   redirectTo: '/auth', pathMatch: 'full' },
-  { path: '**', component: AuthComponent } // pagenotfoundcomponent
+  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

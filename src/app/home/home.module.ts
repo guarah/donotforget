@@ -6,6 +6,7 @@ import { AppBarService } from './app-bar/app-bar.service';
 // Modules
 import { ChecklistModule } from 'app/checklist/checklist.module';
 import { ComponentsModule } from './../lib/components/components.module';
+import { HomeRoutingModule } from './home-routing.module';
 import { MaterializeModule } from 'angular2-materialize';
 // Components
 import { AppBarComponent } from './app-bar/app-bar.component';
@@ -16,7 +17,8 @@ import { HomeComponent } from 'app/home/home.component';
     CommonModule,
     ChecklistModule,
     ComponentsModule,
-    MaterializeModule
+    MaterializeModule,
+    HomeRoutingModule
   ],
   declarations: [
     AppBarComponent,
