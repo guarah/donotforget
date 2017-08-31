@@ -1,5 +1,8 @@
 <df-app-bar></df-app-bar>
 
 <div>
-  <h2 (click)="go('checklists')">Checlists</h2>
+  <a [routerLink]="['checklists']">Checlists</a>
+  <button (click)="go('checklists')">Checlists</button>
 </div>
+
+<router-outlet></router-outlet>
