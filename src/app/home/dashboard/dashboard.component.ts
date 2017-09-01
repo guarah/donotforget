@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'df-dashboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  public time = moment().format('LTS');
+  public date = moment().format('MMMM Do YYYY');
+
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+      this.time = moment().format('LTS');
+    }, 1);
   }
 
 }
