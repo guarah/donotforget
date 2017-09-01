@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
 import { HomeComponent } from 'app/home/home.component';
 import { NgModule } from '@angular/core';
@@ -11,14 +12,19 @@ const homeRoutes: Routes = [
     component: HomeComponent,
     children: [
       {
+        path: '',
+        component: DashboardComponent,
+      },
+      {
         path: 'checklists',
-        component: ChecklistComponent,
-        children: [
-          {
-            path: ':id',
-            component: TaskListComponent
-          }
-        ]
+        component: ChecklistComponent
+        // ,
+        // children: [
+        //   {
+        //     path: ':id',
+        //     component: TaskListComponent
+        //   }
+        // ]
       }
     ]
   }

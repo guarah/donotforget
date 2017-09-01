@@ -28,8 +28,10 @@ export class TaskListComponent implements OnInit {
 
   private checklistKey = new Subject();
 
-  constructor(private checklistService: ChecklistService, private db: AngularFireDatabase) {
-  }
+  constructor(
+    private checklistService: ChecklistService,
+    private db: AngularFireDatabase
+  ) { }
 
   ngOnInit() {
 

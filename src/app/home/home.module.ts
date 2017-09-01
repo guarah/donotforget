@@ -11,6 +11,7 @@ import { MaterializeModule } from 'angular2-materialize';
 // Components
 import { AppBarComponent } from './app-bar/app-bar.component';
 import { HomeComponent } from 'app/home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { HomeComponent } from 'app/home/home.component';
   ],
   declarations: [
     AppBarComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   exports: [
     HomeComponent
