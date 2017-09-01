@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  height: calc(100vh - 64px);
+}
+
+:host .clock-widget {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rem;
+}
+
+:host .clock {
+  font-size: 8rem;
+}
+
+:host .date {
+  font-size: 4rem;
+}
