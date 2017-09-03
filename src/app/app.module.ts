@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { AuthModule } from 'app/auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [

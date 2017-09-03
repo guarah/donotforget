@@ -1,3 +1,5 @@
+import { TextboxQuestion } from './../../lib/components/form/question-models/question-textbox';
+import { QuestionBase } from './../../lib/components/form/question-models/question-base';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
@@ -14,26 +16,35 @@ import { AuthService } from 'app/auth/auth.service';
   styleUrls: ['./panel.component.css']
 })
 
-export class PanelComponent implements OnInit {
+export class PanelComponent {
 
   public addMode = false;
   public checklists: FirebaseListObservable<Checklist[]>;
+
   public checklistModel;
-  public formFields = [{label: 'Checklist name...', field: 'name', type: 'text'}];
-  public formEdit = new FormEdit(this.formFields, 'Salvar', 'Cancelar');
+
+  public questions: QuestionBase<any>[] = [
+    new TextboxQuestion({
+      key: 'name',
+      label: 'Checklist name...',
+      value: '',
+      required: true,
+      order: 1
+    }),
+  ];
 
   constructor(
-    private checklistService: ChecklistService, private db: AngularFireDatabase,
-    private authService: AuthService, private route: ActivatedRoute, private router: Router
+    private checklistService: ChecklistService,
+    private db: AngularFireDatabase,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.authService.getAuthState().subscribe(user => {
       if (user) {
         this.checklists = db.list(`/checklists/${user.uid}`);
        }
     });
-  }
-
-  ngOnInit(): void {
   }
 
   selectChecklist(checklist: FirebaseObjectObservable<Checklist>) {
@@ -45,14 +56,14 @@ export class PanelComponent implements OnInit {
     this.checklistModel = new Checklist();
   }
 
-  onAddEvent(event) {
+  onSubmit(event) {
     this.addMode = false;
     const checklist = this.checklists.push(event);
     event.$key = checklist.key;
     this.checklistService.addCheckList(event);
   }
 
-  onCancelEvent(event) {
+  onCancel(event) {
     this.addMode = false;
   }
 

@@ -1,16 +1,16 @@
 <div>
-  <h4>Checklists</h4>
 
-  <ul>
-    <li *ngFor="let checklist of checklists | async">
-      <a (click)="selectChecklist(checklist)">{{ checklist.name }}</a>
-    </li>
-  </ul>
+  <md-card>
+    <h4>Checklists</h4>
+    <md-nav-list>
+      <a md-list-item *ngFor="let checklist of checklists | async" (click)="selectChecklist(checklist)"> {{ checklist.name }} </a>
+    </md-nav-list>
+  </md-card>
 
-<!--TASK EDIT ng model tem q ficar aqui-->
+  <df-form *ngIf="addMode" (submit)="onSubmit($event)" (cancel)="onCancel()" [questions]="questions"></df-form>
 
-  <df-form-edit *ngIf="addMode" [model]="checklistModel" [formEdit]="formEdit" (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)"></df-form-edit>
-  <a (click)="addChecklist()" class="blue-text darken-1" style="display: block; font-size: 20px;"><i class="blue-text darken-1 material-icons left" style="font-size: 30px;">add</i>Novo Item</a>
-
+  <button *ngIf="!addMode" md-mini-fab color="primary" (click)="addChecklist()">
+    <md-icon class="md-24" aria-label="new item">add</md-icon>
+  </button>
 
 </div>
