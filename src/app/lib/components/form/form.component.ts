@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { QuestionBase } from './question-base';
-import { QuestionControlService } from './question-control.service';
+import { QuestionBase } from './question-models/question-base';
+import { QuestionControlService } from './question-models/question-control.service';
 
 @Component({
   selector: 'df-form',
@@ -13,8 +13,10 @@ import { QuestionControlService } from './question-control.service';
 export class FormComponent implements OnInit {
 
   @Input() questions: QuestionBase<any>[] = [];
-  form: FormGroup;
-  payLoad = '';
+  @Output() submit = new EventEmitter();
+  @Output() cancel = new EventEmitter();
+
+  public form: FormGroup;
 
   constructor(private qcs: QuestionControlService) {  }
 
@@ -23,7 +25,11 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
+    this.submit.emit(this.form.value);
+  }
+
+  onCancel() {
+    this.cancel.emit();
   }
 
 }

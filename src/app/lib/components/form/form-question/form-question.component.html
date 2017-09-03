@@ -3,7 +3,8 @@
 
   <div [ngSwitch]="question.controlType">
 
-    <input *ngSwitchCase="'textbox'" mdInput placeholder="{{question.label}}" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    <input *ngSwitchCase="'textbox'" mdInput placeholder="{{question.label}}"
+    [formControlName]="question.key" [id]="question.key" [type]="question.type" autocomplete="off">
 
     <!-- <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
       <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
