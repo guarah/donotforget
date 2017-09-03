@@ -6,11 +6,15 @@ import { FormEditComponent } from 'app/lib/components/form-edit/Form-edit.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
 // Material
-import { MdButtonModule } from '@angular/material';
-import { MdCardModule } from '@angular/material';
-import { MdToolbarModule } from '@angular/material';
-import { MdMenuModule } from '@angular/material';
-import { MdInputModule } from '@angular/material';
+import {
+  MdListModule,
+  MdIconModule,
+  MdInputModule,
+  MdMenuModule,
+  MdToolbarModule,
+  MdButtonModule,
+  MdCardModule
+} from '@angular/material';
 
 const components = [
   FormEditComponent,
@@ -23,7 +27,9 @@ const materialModules = [
   MdCardModule,
   MdToolbarModule,
   MdMenuModule,
-  MdInputModule
+  MdInputModule,
+  MdIconModule,
+  MdListModule
 ]
 
 @NgModule({
