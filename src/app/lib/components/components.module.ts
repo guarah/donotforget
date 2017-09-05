@@ -13,7 +13,8 @@ import {
   MdMenuModule,
   MdToolbarModule,
   MdButtonModule,
-  MdCardModule
+  MdCardModule,
+  MdTableModule
 } from '@angular/material';
 
 const components = [
@@ -29,7 +30,8 @@ const materialModules = [
   MdMenuModule,
   MdInputModule,
   MdIconModule,
-  MdListModule
+  MdListModule,
+  MdTableModule
 ]
 
 @NgModule({

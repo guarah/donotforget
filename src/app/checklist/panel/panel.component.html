@@ -1,7 +1,8 @@
 <div>
+  <h4>Checklists</h4>
+
 
   <md-card>
-    <h4>Checklists</h4>
     <md-nav-list>
       <a md-list-item *ngFor="let checklist of checklists | async" (click)="selectChecklist(checklist)"> {{ checklist.name }} </a>
     </md-nav-list>
