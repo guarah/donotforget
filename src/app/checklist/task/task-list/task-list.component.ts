@@ -1,3 +1,5 @@
+import { TextboxQuestion } from './../../../lib/components/form/question-models/question-textbox';
+import { QuestionBase } from './../../../lib/components/form/question-models/question-base';
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'app/checklist/task/task';
 import { FormEdit } from 'app/lib/components/form-edit/formEdit';
@@ -16,17 +18,23 @@ export class TaskListComponent implements OnInit {
 
   tasks: any[] = [];
   tasksObservable: FirebaseListObservable<any[]>;
-  taskModel;
-
-  formFields = [{label: 'Task...', field: 'description', type: 'text'}];
-  formEdit = new FormEdit(this.formFields, 'Salvar', 'Cancelar');
 
   public addMode = false;
-  public checkList = new Checklist();
-  public cleanButtonVisible = false;
+  public checkList = null;
   public loading = false;
+  public noData = true;
 
   private checklistKey = new Subject();
+
+  public questions: QuestionBase<any>[] = [
+    new TextboxQuestion({
+      key: 'description',
+      label: 'Task description name...',
+      value: '',
+      required: true,
+      order: 1
+    }),
+  ];
 
   constructor(
     private checklistService: ChecklistService,
@@ -45,7 +53,7 @@ export class TaskListComponent implements OnInit {
     this.tasksObservable.subscribe(data => {
       this.loading = false;
       this.tasks = data;
-      this.cleanButtonVisible = data.length > 0;
+      this.noData = data.length === 0;
     });
 
     this.checklistService.selectedChecklist$.subscribe((checklist) => {
@@ -53,7 +61,7 @@ export class TaskListComponent implements OnInit {
       this.checklistKey.next(checklist.$key);
       this.checkList = checklist;
       this.tasks = [];
-      this.cleanButtonVisible = false;
+      this.noData = false;
     });
 
     this.checklistService.addedChecklist$.subscribe((data) => {
@@ -69,7 +77,6 @@ export class TaskListComponent implements OnInit {
 
   addTask() {
     this.addMode = true;
-    this.taskModel = new Task();
   }
 
   resetCompleted() {
@@ -78,8 +85,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  onAddEvent(task: Task) {
-    this.addMode = false;
+  onSubmitted(task: Task) {
     if (this.checkList) {
       task.checklist = this.checkList.$key;
       task.checked = false;
@@ -87,7 +93,7 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  onCancelEvent(event) {
+  onCancel(event) {
     this.addMode = false;
   }
 

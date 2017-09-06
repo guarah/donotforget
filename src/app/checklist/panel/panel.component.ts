@@ -21,8 +21,6 @@ export class PanelComponent {
   public addMode = false;
   public checklists: FirebaseListObservable<Checklist[]>;
 
-  public checklistModel;
-
   public questions: QuestionBase<any>[] = [
     new TextboxQuestion({
       key: 'name',
@@ -53,11 +51,9 @@ export class PanelComponent {
 
   addChecklist() {
     this.addMode = true;
-    this.checklistModel = new Checklist();
   }
 
-  onSubmit(event) {
-    this.addMode = false;
+  onSubmitted(event) {
     const checklist = this.checklists.push(event);
     event.$key = checklist.key;
     this.checklistService.addCheckList(event);
