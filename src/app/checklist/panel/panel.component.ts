@@ -57,6 +57,16 @@ export class PanelComponent {
     this.checklistService.selectChecklist(checklist);
   }
 
+  deleteChecklist(checklist: FirebaseObjectObservable<Checklist>) {
+    if (this.checklists) {
+      this.checklists.remove(checklist['$key']);
+    }
+  }
+
+  editChecklist(checklist: FirebaseObjectObservable<Checklist>) {
+    // this.checklistService.selectChecklist(checklist);
+  }
+
   addChecklist() {
     this.addMode = true;
   }
