@@ -1,3 +1,4 @@
+import { ColorQuestion } from './../../lib/components/form/question-models/question-color-selector';
 import { TextboxQuestion } from './../../lib/components/form/question-models/question-textbox';
 import { QuestionBase } from './../../lib/components/form/question-models/question-base';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,6 +30,13 @@ export class PanelComponent {
       required: true,
       order: 1
     }),
+    new ColorQuestion({
+      key: 'color',
+      label: 'color',
+      value: '#000',
+      required: true,
+      order: 2
+    })
   ];
 
   constructor(

@@ -16,6 +16,7 @@ import {
   MdCardModule,
   MdTableModule
 } from '@angular/material';
+import { ColorSelectorComponent } from './color-selector/color-selector.component';
 
 const components = [
   FormEditComponent,
@@ -43,7 +44,8 @@ const materialModules = [
   ],
   declarations: [
     ...components,
-    FormQuestionComponent
+    FormQuestionComponent,
+    ColorSelectorComponent
   ],
   exports: [
     ...components,
