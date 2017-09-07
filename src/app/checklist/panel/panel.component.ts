@@ -33,7 +33,7 @@ export class PanelComponent {
     new ColorQuestion({
       key: 'color',
       label: 'color',
-      value: '#000',
+      value: '#673ab7',
       required: true,
       order: 2
     })

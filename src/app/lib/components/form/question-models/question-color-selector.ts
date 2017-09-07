@@ -2,11 +2,11 @@ import { QuestionBase } from './question-base';
 
 export class ColorQuestion extends QuestionBase<string> {
   controlType = 'color';
-  // type: ColorType;
+  // type: string;
 
   constructor(options: {} = {}) {
     super(options);
-    // this.type = options['type'] || 'selector';
+    // this.type = options['type'] || 'color';
   }
 }
 
