@@ -1,30 +1,34 @@
 <div>
 
-  <ul class="collection with-header">
-    <li class="collection-header"><h4>{{ checkList.name || "Select a checklist..."}}</h4></li>
+  <md-card>
 
-    <li *ngIf="loading" class="collection-item center-align">
+    <h4>{{ checkList?.name || "Select a checklist..."}}</h4>
+
+    <div *ngIf="loading" class="collection-item center-align">
       <df-loading></df-loading>
-    </li>
-
-    <!--TASK LIST-->
-    <div [class.hidden]="loading">
-      <li *ngFor="let task of tasksObservable | async" class="collection-item">
-        <df-task-item (click)="selectTask(task)" [task]='task' ></df-task-item>
-      </li>
     </div>
 
+    <md-list [class.hidden]="loading">
+      <md-list-item style="cursor: pointer;" *ngFor="let task of tasksObservable | async" (click)="selectChecklist(checklist)">
+          <df-task-item (click)="selectTask(task)" [task]='task' ></df-task-item>
+      </md-list-item>
+    </md-list>
 
-    <!--TASK EDIT-->
-    <li *ngIf="addMode" class="collection-item">
-      <df-form-edit [model]="taskModel" [formEdit]="formEdit" (addEvent)="onAddEvent($event)" (cancelEvent)="onCancelEvent($event)"></df-form-edit>
-    </li>
-  </ul>
+  </md-card>
 
-  <a (click)="addTask()" class="blue-text darken-1" style="display: block; font-size: 20px;"><i class="blue-text darken-1 material-icons left" style="font-size: 30px;">add</i>New task</a>
+  <md-card *ngIf="addMode">
+    <df-form (submitted)="onSubmitted($event)" (cancel)="onCancel()" [questions]="questions"></df-form>
+  </md-card>
 
-  <div style="text-align: center">
+
+  <button type="button" *ngIf="!addMode && checkList" md-mini-fab color="primary" (click)="addTask()" style="margin: -20px 35px;">
+    <md-icon class="md-24" aria-label="new item">add</md-icon>
+  </button>
+
+
+
+  <!-- <div style="text-align: center">
     <button *ngIf="cleanButtonVisible" type="submit" class="btn waves-effect waves-light blue darken-1" style="text-align: center;" (click)="resetCompleted()">Reset completeds</button>
-  </div>
+  </div> -->
 
 </div>

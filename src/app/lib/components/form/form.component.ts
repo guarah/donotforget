@@ -13,7 +13,7 @@ import { QuestionControlService } from './question-models/question-control.servi
 export class FormComponent implements OnInit {
 
   @Input() questions: QuestionBase<any>[] = [];
-  @Output() submit = new EventEmitter();
+  @Output() submitted = new EventEmitter();
   @Output() cancel = new EventEmitter();
 
   public form: FormGroup;
@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submit.emit(this.form.value);
+    this.submitted.emit(this.form.value);
   }
 
   onCancel() {
