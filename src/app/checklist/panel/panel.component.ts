@@ -1,3 +1,4 @@
+import { MdSnackBar } from '@angular/material';
 import { ColorQuestion } from './../../lib/components/form/question-models/question-color-selector';
 import { TextboxQuestion } from './../../lib/components/form/question-models/question-textbox';
 import { QuestionBase } from './../../lib/components/form/question-models/question-base';
@@ -16,7 +17,7 @@ import { AuthService } from 'app/auth/auth.service';
   styleUrls: ['./panel.component.css']
 })
 
-export class PanelComponent {
+export class PanelComponent implements OnInit {
 
   public addMode = false;
   public checklists: FirebaseListObservable<Checklist[]>;
@@ -43,12 +44,19 @@ export class PanelComponent {
     private db: AngularFireDatabase,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public snackBar: MdSnackBar
   ) {
     this.authService.getAuthState().subscribe(user => {
       if (user) {
         this.checklists = db.list(`/checklists/${user.uid}`);
        }
+    });
+  }
+
+  ngOnInit(): void {
+    this.checklistService.deletedChecklist$.subscribe(c => {
+      this.deleteChecklist(c);
     });
   }
 
@@ -59,6 +67,10 @@ export class PanelComponent {
   deleteChecklist(checklist: FirebaseObjectObservable<Checklist>) {
     if (this.checklists) {
       this.checklists.remove(checklist['$key']);
+      const snackBarRef = this.snackBar.open('Checklist deleted', 'Undo', {
+        duration: 3000
+      });
+      // TODO: Undo
     }
   }
 
@@ -74,6 +86,9 @@ export class PanelComponent {
     const checklist = this.checklists.push(event);
     event.$key = checklist.key;
     this.checklistService.addCheckList(event);
+    const snackBarRef = this.snackBar.open('New checklist added', null, {
+      duration: 3000
+    });
   }
 
   onCancel(event) {

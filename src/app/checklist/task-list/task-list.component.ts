@@ -7,6 +7,7 @@ import { QuestionBase } from 'app/lib/components/form/question-models/question-b
 import { Subject } from 'rxjs/Subject';
 import { Task } from 'app/checklist/models/task';
 import { TextboxQuestion } from 'app/lib/components/form/question-models/question-textbox';
+import { MdSnackBar } from '@angular/material';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class TaskListComponent implements OnInit {
 
   constructor(
     private checklistService: ChecklistService,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    public snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -67,6 +69,23 @@ export class TaskListComponent implements OnInit {
     this.checklistService.addedChecklist$.subscribe((data) => {
       this.checklistService.selectChecklist(data);
     });
+
+  }
+
+  deleteChecklist() {
+    if (this.checkList) {
+      this.checklistService.deleteChecklist(this.checkList);
+    }
+  }
+
+  deleteTask(task) {
+    if (this.tasksObservable) {
+      this.tasksObservable.remove(task['$key']);
+      const snackBarRef = this.snackBar.open('Task deleted', 'Undo', {
+        duration: 3000
+      });
+      // TODO: Undo
+    }
   }
 
   selectTask(task) {
@@ -83,6 +102,9 @@ export class TaskListComponent implements OnInit {
     this.tasks.forEach(t => {
       this.tasksObservable.update(t.$key, {checked: false});
     });
+    const snackBarRef = this.snackBar.open('All tasks reseted', null, {
+      duration: 3000
+    });
   }
 
   onSubmitted(task: Task) {
@@ -90,6 +112,9 @@ export class TaskListComponent implements OnInit {
       task.checklist = this.checkList.$key;
       task.checked = false;
       this.tasksObservable.push(task);
+      const snackBarRef = this.snackBar.open('New task added', null, {
+        duration: 3000
+      });
     }
   }
 

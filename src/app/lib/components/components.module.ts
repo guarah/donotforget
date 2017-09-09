@@ -14,7 +14,8 @@ import {
   MdButtonModule,
   MdCardModule,
   MdTableModule,
-  MdCheckboxModule
+  MdCheckboxModule,
+  MdSnackBarModule
 } from '@angular/material';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 
@@ -32,7 +33,8 @@ const materialModules = [
   MdIconModule,
   MdListModule,
   MdTableModule,
-  MdCheckboxModule
+  MdCheckboxModule,
+  MdSnackBarModule
 ]
 
 @NgModule({

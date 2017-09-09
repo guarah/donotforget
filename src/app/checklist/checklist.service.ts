@@ -8,6 +8,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 export class ChecklistService {
 
   private selectedChecklistSource = new Subject<any>();
+  private deletedChecklistSource = new Subject<any>();
   private selectedTaskSource = new Subject<Task>();
   private addedChecklistSource = new Subject<Checklist>();
   private addedTaskSource = new Subject<{Task: Task, Checklist: Checklist}>();
@@ -15,6 +16,7 @@ export class ChecklistService {
   private checklistsSource = new Subject<Checklist[]>();
 
   selectedChecklist$ = this.selectedChecklistSource.asObservable();
+  deletedChecklist$ = this.deletedChecklistSource.asObservable();
   selectedTask$ = this.selectedTaskSource.asObservable();
   addedChecklist$ = this.addedChecklistSource.asObservable();
   addedTask$ = this.addedTaskSource.asObservable();
@@ -39,6 +41,10 @@ export class ChecklistService {
 
   checkTask(task: Task) {
     this.checkedTaskSource.next(task);
+  }
+
+  deleteChecklist(checklist: Checklist) {
+    this.deletedChecklistSource.next(checklist);
   }
 
   constructor(private db: AngularFireDatabase) { }
