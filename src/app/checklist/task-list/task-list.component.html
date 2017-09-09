@@ -38,10 +38,9 @@
 
     <md-list [class.hidden]="loading">
       <md-list-item style="cursor: pointer;" *ngFor="let task of tasksObservable | async">
-        <md-icon>
-          <input type="checkbox" [id]="task.$key" [checked]="task.checked" (click)="selectTask(task)"/>
-          <label [for]="task.$key"></label>
-        </md-icon>
+
+        <md-checkbox color="primary" [(ngModel)]="task.checked" (click)="selectTask(task)"></md-checkbox>
+
         <h3 mdLine> {{task.description}} </h3>
 
         <!-- Menu Button -->
