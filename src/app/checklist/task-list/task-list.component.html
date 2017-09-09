@@ -17,11 +17,11 @@
               <md-icon>undo</md-icon>
               <span>Reset completeds</span>
             </button>
-            <button md-menu-item (click)="resetCompleted()">
+            <button md-menu-item>
               <md-icon>edit</md-icon>
               <span>Edit checklist</span>
             </button>
-            <button md-menu-item (click)="resetCompleted()">
+            <button md-menu-item (click)="deleteChecklist()">
               <md-icon>delete</md-icon>
               <span>Delete checklist</span>
             </button>
@@ -51,7 +51,7 @@
 
         <!-- Menu -->
         <md-menu #menu="mdMenu">
-          <button md-menu-item (click)="resetCompleted()">
+          <button md-menu-item (click)="deleteTask(task)">
             <md-icon>delete</md-icon>
             <span>Delete</span>
           </button>

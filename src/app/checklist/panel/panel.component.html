@@ -5,10 +5,9 @@
     <h4>Checklists</h4>
 
     <md-list>
-      <md-list-item style="cursor: pointer;" *ngFor="let checklist of checklists | async">
+      <md-list-item style="cursor: pointer;" *ngFor="let checklist of checklists | async" (click)="selectChecklist(checklist)">
           <md-icon mdListIcon [style.color]="checklist.color || '#673ab7'">fiber_manual_record</md-icon>
-          <h3 mdLine (click)="selectChecklist(checklist)"> {{checklist.name}} </h3>
-
+          <h3 mdLine> {{checklist.name}} </h3>
       </md-list-item>
     </md-list>
 
