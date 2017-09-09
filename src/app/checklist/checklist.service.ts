@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Checklist } from 'app/checklist/checklist';
-import { Task } from 'app/checklist/task/task';
+import { Checklist } from 'app/checklist/models/checklist';
+import { Task } from 'app/checklist/models/task';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 @Injectable()

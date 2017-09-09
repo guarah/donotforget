@@ -1,5 +1,5 @@
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
+import { TaskListComponent } from 'app/checklist/task-list/task-list.component';
 import { HomeComponent } from 'app/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

@@ -1,4 +1,4 @@
-import { Task } from 'app/checklist/task/task';
+import { Task } from 'app/checklist/models/task';
 
 export class Checklist {
     $key: number;
