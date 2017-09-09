@@ -10,8 +10,7 @@ import { ComponentsModule } from 'app/lib/components/components.module';
 // Components
 import { ChecklistComponent } from 'app/checklist/checklist.component';
 import { PanelComponent } from 'app/checklist/panel/panel.component';
-import { TaskItemComponent } from 'app/checklist/task/task-item/task-item.component';
-import { TaskListComponent } from 'app/checklist/task/task-list/task-list.component';
+import { TaskListComponent } from 'app/checklist/task-list/task-list.component';
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { TaskListComponent } from 'app/checklist/task/task-list/task-list.compon
   declarations: [
     ChecklistComponent,
     PanelComponent,
-    TaskItemComponent,
     TaskListComponent
   ],
   exports: [

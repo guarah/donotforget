@@ -5,9 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { Checklist } from 'app/checklist/checklist';
+import { Checklist } from 'app/checklist/models/checklist';
 import { ChecklistService } from 'app/checklist/checklist.service';
-import { FormEdit } from 'app/lib/components/form-edit/formEdit';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from 'app/auth/auth.service';
 

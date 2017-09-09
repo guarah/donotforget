@@ -1,12 +1,12 @@
-import { TextboxQuestion } from './../../../lib/components/form/question-models/question-textbox';
-import { QuestionBase } from './../../../lib/components/form/question-models/question-base';
 import { Component, OnInit } from '@angular/core';
-import { Task } from 'app/checklist/task/task';
-import { FormEdit } from 'app/lib/components/form-edit/formEdit';
-import { ChecklistService } from 'app/checklist/checklist.service';
+
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Checklist } from 'app/checklist/checklist';
+import { Checklist } from 'app/checklist/models/checklist';
+import { ChecklistService } from 'app/checklist/checklist.service';
+import { QuestionBase } from 'app/lib/components/form/question-models/question-base';
 import { Subject } from 'rxjs/Subject';
+import { Task } from 'app/checklist/models/task';
+import { TextboxQuestion } from 'app/lib/components/form/question-models/question-textbox';
 
 
 @Component({
