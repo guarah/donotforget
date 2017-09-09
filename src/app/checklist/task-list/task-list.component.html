@@ -1,0 +1,76 @@
+<div>
+
+  <md-card>
+
+    <md-card-title>
+      <span style="font-size: 32px;">{{ checkList?.name || "Select a checklist..."}}</span>
+      <div class="right">
+          <!-- Menu Button -->
+          <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>more_vert</md-icon>
+          </button>
+          <!-- Menu Button -->
+
+          <!-- Menu -->
+          <md-menu #menu="mdMenu">
+            <button md-menu-item (click)="resetCompleted()">
+              <md-icon>undo</md-icon>
+              <span>Reset completeds</span>
+            </button>
+            <button md-menu-item (click)="resetCompleted()">
+              <md-icon>edit</md-icon>
+              <span>Edit checklist</span>
+            </button>
+            <button md-menu-item (click)="resetCompleted()">
+              <md-icon>delete</md-icon>
+              <span>Delete checklist</span>
+            </button>
+          </md-menu>
+          <!-- Menu -->
+        </div>
+    </md-card-title>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="collection-item center-align">
+      <df-loading></df-loading>
+    </div>
+    <!-- Loading -->
+
+    <md-list [class.hidden]="loading">
+      <md-list-item style="cursor: pointer;" *ngFor="let task of tasksObservable | async">
+        <md-icon>
+          <input type="checkbox" [id]="task.$key" [checked]="task.checked" (click)="selectTask(task)"/>
+          <label [for]="task.$key"></label>
+        </md-icon>
+        <h3 mdLine> {{task.description}} </h3>
+
+        <!-- Menu Button -->
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+        <!-- Menu Button -->
+
+        <!-- Menu -->
+        <md-menu #menu="mdMenu">
+          <button md-menu-item (click)="resetCompleted()">
+            <md-icon>delete</md-icon>
+            <span>Delete</span>
+          </button>
+        </md-menu>
+        <!-- Menu -->
+
+      </md-list-item>
+    </md-list>
+
+  </md-card>
+
+  <md-card *ngIf="addMode">
+    <df-form (submitted)="onSubmitted($event)" (cancel)="onCancel()" [questions]="questions"></df-form>
+  </md-card>
+
+
+  <button type="button" *ngIf="!addMode && checkList" md-mini-fab color="primary" (click)="addTask()" style="margin: -20px 35px;">
+    <md-icon class="md-24" aria-label="new item">add</md-icon>
+  </button>
+
+</div>
