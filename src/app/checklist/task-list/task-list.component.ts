@@ -7,7 +7,8 @@ import { QuestionBase } from 'app/lib/components/form/question-models/question-b
 import { Subject } from 'rxjs/Subject';
 import { Task } from 'app/checklist/models/task';
 import { TextboxQuestion } from 'app/lib/components/form/question-models/question-textbox';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdDialog } from '@angular/material';
+import { DialogComponent } from 'app/lib/components/dialog/dialog.component';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class TaskListComponent implements OnInit {
   constructor(
     private checklistService: ChecklistService,
     private db: AngularFireDatabase,
-    public snackBar: MdSnackBar
+    public snackBar: MdSnackBar,
+    public dialog: MdDialog
   ) { }
 
   ngOnInit() {
@@ -73,19 +75,31 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteChecklist() {
-    if (this.checkList) {
-      this.checklistService.deleteChecklist(this.checkList);
-    }
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '200px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && this.checkList) {
+        this.checklistService.deleteChecklist(this.checkList);
+      }
+    });
   }
 
   deleteTask(task) {
-    if (this.tasksObservable) {
-      this.tasksObservable.remove(task['$key']);
-      const snackBarRef = this.snackBar.open('Task deleted', 'Undo', {
-        duration: 3000
-      });
-      // TODO: Undo
-    }
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '200px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && this.tasksObservable) {
+        this.tasksObservable.remove(task['$key']);
+        const snackBarRef = this.snackBar.open('Task deleted', 'Undo', {
+          duration: 3000
+        });
+        // TODO: Undo
+      }
+    });
   }
 
   selectTask(task) {

@@ -15,13 +15,16 @@ import {
   MdCardModule,
   MdTableModule,
   MdCheckboxModule,
-  MdSnackBarModule
+  MdSnackBarModule,
+  MdDialogModule
 } from '@angular/material';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 const components = [
   LoadingComponent,
   FormComponent,
+  DialogComponent
 ];
 
 const materialModules = [
@@ -34,7 +37,8 @@ const materialModules = [
   MdListModule,
   MdTableModule,
   MdCheckboxModule,
-  MdSnackBarModule
+  MdSnackBarModule,
+  MdDialogModule
 ]
 
 @NgModule({
@@ -48,6 +52,9 @@ const materialModules = [
     ...components,
     FormQuestionComponent,
     ColorSelectorComponent
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   exports: [
     ...components,
