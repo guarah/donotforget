@@ -16,7 +16,8 @@ import {
   MdTableModule,
   MdCheckboxModule,
   MdSnackBarModule,
-  MdDialogModule
+  MdDialogModule,
+  MdTooltipModule
 } from '@angular/material';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 import { DialogComponent } from './dialog/dialog.component';
@@ -38,7 +39,8 @@ const materialModules = [
   MdTableModule,
   MdCheckboxModule,
   MdSnackBarModule,
-  MdDialogModule
+  MdDialogModule,
+  MdTooltipModule
 ]
 
 @NgModule({

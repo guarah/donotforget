@@ -39,7 +39,7 @@
     <md-list [class.hidden]="loading">
       <md-list-item style="cursor: pointer;" *ngFor="let task of tasksObservable | async">
 
-        <md-checkbox color="primary" [(ngModel)]="task.checked" (click)="selectTask(task)"></md-checkbox>
+        <md-checkbox [mdTooltip]="task.checked ? 'Uncomplete task' : 'Mark task as completed'" color="primary" [(ngModel)]="task.checked" (click)="selectTask(task)"></md-checkbox>
 
         <h3 mdLine> {{task.description}} </h3>
 
@@ -68,8 +68,8 @@
   </md-card>
 
 
-  <button type="button" *ngIf="!addMode && checkList" md-mini-fab color="primary" (click)="addTask()" style="margin: -20px 35px;">
-    <md-icon class="md-24" aria-label="new item">add</md-icon>
+  <button mdTooltip="New task" type="button" *ngIf="!addMode && checkList" md-mini-fab color="primary" (click)="addTask()" style="margin: -20px 35px;">
+    <md-icon class="md-24" aria-label="New task">add</md-icon>
   </button>
 
 </div>

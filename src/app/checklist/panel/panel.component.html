@@ -17,8 +17,8 @@
     <df-form (submitted)="onSubmitted($event)" (cancel)="onCancel()" [questions]="questions"></df-form>
   </md-card>
 
-  <button *ngIf="!addMode" md-mini-fab color="primary" (click)="addChecklist()" style="margin: -20px 35px;">
-    <md-icon class="md-24" aria-label="new item">add</md-icon>
+  <button mdTooltip="New checklist" *ngIf="!addMode" md-mini-fab color="primary" (click)="addChecklist()" style="margin: -20px 35px;">
+    <md-icon class="md-24" aria-label="New checklist">add</md-icon>
   </button>
 
 </div>
